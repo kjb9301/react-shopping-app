@@ -1,0 +1,12 @@
+.shopping-list-wrapper {
+  border: 1px solid green;
+  flex: 3;
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  grid-auto-rows: minmax(auto,auto);
+  overflow: hidden scroll;
+
+  .shopping-item-wrapper {
+    border: 1px solid black;
+  }
+}
