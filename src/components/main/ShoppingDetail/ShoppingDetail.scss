@@ -1,4 +1,16 @@
-.shopping-detail-wrapper {
+.detail-wrapper {
   border: 1px solild orange;
   flex: 1.5;
+
+  .detail-box {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    span {
+      font-size: 30px;
+    }
+  }
 }

@@ -1,21 +1,33 @@
 import React, { Component, Fragment } from 'react';
 import ShoppingList from 'components/main/ShoppingList';
 import ShoppingDetail from 'components/main/ShoppingDetail';
-import shoppingData from '/public/dummy/goods.js';
-import axios from 'axios';
 
 class HomeContainer extends Component {
+  state = {
+    shoppingdata: [],
+    detailData: ''
+  }
+
+  handleDetail = (item) => {
+    this.setState({
+      detailData: item
+    })
+  }
+
   componentWillMount(){
-    const test = axios.get('/public/dummy/goods.js');
-    console.log(test)
+    this.setState({
+      shoppingData: JSON.parse(localStorage.getItem("shoppingData"))
+    })
   }
 
   render() {
-    console.log("런데후");
+    const { shoppingData, detailData } = this.state;
+    const { handleDetail } = this;
+    console.log(shoppingData)
     return (
       <Fragment>
-        <ShoppingList/>
-        <ShoppingDetail/>
+        <ShoppingList shoppingList={shoppingData} onDetail={handleDetail}/>
+        <ShoppingDetail detailData={detailData}/>
       </Fragment>
     );
   }

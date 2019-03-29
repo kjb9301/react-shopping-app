@@ -2,18 +2,26 @@
   border: 1px solid black;
   flex: .3;
 
+
   ul {
     margin: 0;
-    padding: 0;
+    padding-left: 80px;
     display: flex;
+    justify-content: flex-start;
   
     li {
       font-size: 40px;
       line-height: 5rem;
       padding: 5px;
+      list-style: none;
+      padding: 0 20px 0 20px;
   
       &:hover {
         cursor: pointer;
+      }
+
+      a {
+        text-decoration: none;
       }
     }
   }
