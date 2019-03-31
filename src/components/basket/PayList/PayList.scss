@@ -1,0 +1,47 @@
+.pay-list-wrapper {
+  border: 1px solid green;
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+
+  .pay-header {
+    border: 1px solid red;
+    flex: .5;
+  }
+
+  .pay-section {
+    border: 1px solid blue;
+    flex: 4;
+  }
+
+  .pay-footer {
+    flex: 1;
+    display: flex;
+
+    .pay-total {
+      flex: 2;
+      border: 1px solid black;
+      margin: 5px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      padding: 20px;
+
+      span {
+        font-size: 100px;
+      }
+    }
+
+    .pay-btn {
+      flex: 1;
+      padding: 5px;
+      
+      button {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+      }
+    }
+  }
+}

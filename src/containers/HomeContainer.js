@@ -19,6 +19,7 @@ class HomeContainer extends Component {
   }
 
   render() {
+    console.log("HomeContainer render")
     const { shoppingData, addToBasket } = this.props;
     const { detailData } = this.state;
     const { handleDetail } = this;

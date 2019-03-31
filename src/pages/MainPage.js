@@ -1,6 +1,5 @@
 import React from 'react';
 import Section from 'components/common/Section';
-import HomeContainer from 'containers/HomeContainer';
 import MainContainer from 'containers/MainContainer';
 
 const MainPage = ({location}) => {

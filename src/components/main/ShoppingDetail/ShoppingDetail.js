@@ -13,13 +13,13 @@ const ShoppingDetail = ({detailData, selectedOption, addToBasket, onChangeOption
           </div>
           <div className="detail-right">
             <div className="detail-text">
-              <div className="detail-name"><span>{detailData.name}</span></div>
-              <div className="detail-provider"><span>{detailData.provider}</span></div>
-              <div className="detail-price"><span>{detailData.price}원</span></div>
-              <div className="detail-price"><span>{detailData.shipping.price}원</span></div>
+              <div className="detail-name">상품명:<span>{detailData.name}</span></div>
+              <div className="detail-provider">판매자:<span>{detailData.provider}</span></div>
+              <div className="detail-price">상품가격:<span>{detailData.price}원</span></div>
+              <div className="detail-price">배송비:<span>{detailData.shipping.price}원</span></div>
               <div className="detail-price">
                 <select onChange={onChangeOption}>
-                  <option value=''>--선택없음--</option>
+                  <option value=''>--옵션선택--</option>
                   {detailData.options.map((option,index) => {
                     return (<option key={index} value={option.id}>{`${option.color} / ${option.size}`}</option>)
                   })}

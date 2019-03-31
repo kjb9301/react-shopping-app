@@ -25,14 +25,12 @@ const ShoppingItem = ({item,onDetail}) => {
     <div className="item-wrapper">
       <div className="item-box" onClick={() => onDetail(item)}>
         <div className="item-top">
-          <div className="item-img">
-            <img src={item.img} alt={item.name}/>
-          </div>
+          <img src={item.img} alt={item.name}/>
         </div>
         <div className="item-bottom">
-          <div className="item-name"><span>{item.name}</span></div>
-          <div className="item-provider"><span>{item.provider}</span></div>
-          <div className="item-price"><span>{item.price}원</span></div>
+          <div className="item-name">{item.name}</div>
+          <div className="item-provider">판매자 :{item.provider}</div>
+          <div className="item-price">가격:{item.price}원</div>
         </div>
       </div>
     </div>
