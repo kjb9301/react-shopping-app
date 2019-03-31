@@ -1,12 +1,11 @@
 import React from 'react';
 import Section from 'components/common/Section';
 import BasketContainer from 'containers/BasketContainer';
-import MainContainer from 'containers/MainContainer';
 
-const BasketPage = ({location}) => {
+const BasketPage = () => {
   return (
     <Section>
-      <MainContainer location={location}/>
+      <BasketContainer/>
     </Section>
   );
 };

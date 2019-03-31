@@ -14,4 +14,14 @@ const PayList = () => {
   );
 };
 
+const PayItem = () => {
+  return (
+    <div className="pay-wrapper">
+      <div className="pay-box">
+        <div></div>
+      </div>
+    </div>
+  )
+}
+
 export default PayList;

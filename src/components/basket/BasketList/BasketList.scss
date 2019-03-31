@@ -6,7 +6,6 @@
   justify-content: center;
 
   .basket-list-box {
-    border: 1px solid black;
     height: 90%;
     width: 90%;
     display: flex;
@@ -34,12 +33,11 @@
 
     .basket-content {
       flex: 1;
-      border: 1px solid red;
       display: flex;
       flex-direction: column;
 
       .item-box {
-        border: 1px solid black;
+        border-bottom: 1px solid gray;
         display: flex;
 
         .item-img {
@@ -60,6 +58,13 @@
           display: flex;
           justify-content: center;
           align-items: center;
+        }
+
+        .item-btn {
+
+          button {
+            width: 90%;
+          }
         }
       }
     }
