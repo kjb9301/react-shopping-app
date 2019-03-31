@@ -10,6 +10,7 @@ class BasketContainer extends Component {
 
   addToOrder = (id) => {
     const { basketList } = this.state;
+    const index = basketList.map((item) => item.id === id);
   }
 
   deleteInBasket = (id) => {
