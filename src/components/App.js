@@ -4,7 +4,7 @@ import Header from './common/Header';
 import { Route } from 'react-router-dom';
 import { MainPage, BasketPage } from 'pages';
 import axios from 'axios';
-import img from 'styles/none.jpg';
+import img from 'styles/item.png';
 
 class App extends Component {
   componentWillMount(){

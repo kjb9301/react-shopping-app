@@ -1,11 +1,12 @@
 import React from 'react';
 import Section from 'components/common/Section';
 import HomeContainer from 'containers/HomeContainer';
+import MainContainer from 'containers/MainContainer';
 
-const MainPage = () => {
+const MainPage = ({location}) => {
   return (
     <Section>
-      <HomeContainer/>
+      <MainContainer location={location}/>
     </Section>
   );
 };

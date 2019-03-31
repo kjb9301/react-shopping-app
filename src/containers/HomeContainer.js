@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import ShoppingList from 'components/main/ShoppingList';
-import ShoppingDetail from 'components/main/ShoppingDetail';
+import DetailContainer from 'containers/DetailContainer';
 
 class HomeContainer extends Component {
   state = {
-    shoppingdata: [],
     detailData: ''
   }
 
@@ -14,20 +13,20 @@ class HomeContainer extends Component {
     })
   }
 
-  componentWillMount(){
-    this.setState({
-      shoppingData: JSON.parse(localStorage.getItem("shoppingData"))
-    })
+  shouldComponentUpdate(nextProps, nextState){
+    const { detailData } = this.state;
+    return detailData !== nextState.detailData;
   }
 
   render() {
-    const { shoppingData, detailData } = this.state;
+    const { shoppingData, addToBasket } = this.props;
+    const { detailData } = this.state;
     const { handleDetail } = this;
-    console.log(shoppingData)
+    
     return (
       <Fragment>
         <ShoppingList shoppingList={shoppingData} onDetail={handleDetail}/>
-        <ShoppingDetail detailData={detailData}/>
+        <DetailContainer detailData={detailData} addToBasket={addToBasket}/>
       </Fragment>
     );
   }

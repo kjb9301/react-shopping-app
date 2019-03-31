@@ -22,17 +22,17 @@ const ShoppingList = ({shoppingList,onDetail}) => {
 const ShoppingItem = ({item,onDetail}) => {
 
   return (
-    <div className="shopping-item-wrapper">
-      <div className="shopping-item-box" onClick={() => onDetail(item)}>
-        <div className="shopping-item-top">
-          <div className="shopping-item-img">
+    <div className="item-wrapper">
+      <div className="item-box" onClick={() => onDetail(item)}>
+        <div className="item-top">
+          <div className="item-img">
             <img src={item.img} alt={item.name}/>
           </div>
         </div>
-        <div className="shopping-item-bottom">
-          <div className="shopping-item-name"><span>{item.name}</span></div>
-          <div className="shopping-item-provider"><span>{item.provider}</span></div>
-          <div className="shopping-item-price"><span>{item.price}원</span></div>
+        <div className="item-bottom">
+          <div className="item-name"><span>{item.name}</span></div>
+          <div className="item-provider"><span>{item.provider}</span></div>
+          <div className="item-price"><span>{item.price}원</span></div>
         </div>
       </div>
     </div>

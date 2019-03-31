@@ -1,13 +1,61 @@
 .detail-wrapper {
   border: 1px solild orange;
   flex: 1.5;
+  height: 60%;;
 
   .detail-box {
-    height: 100%;
+    border: 1px solid red;
+    height: 100%;;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+    margin: 10px;
+
+    .detail-left {
+      flex: 1;
+      border: 1px solid blue;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    .detail-right {
+      flex: 1;
+      border: 1px solid green;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+
+      .detail-text {
+        flex: 3;
+        border: 1xp solid orange;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        select {
+          width: 80%;
+          height: 50px;
+        }
+      
+
+        div {
+          
+        }
+      }
+
+      .detail-btn {
+        flex: .5;
+        border: 1px solid pink;
+
+        button {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
 
     span {
       font-size: 30px;
