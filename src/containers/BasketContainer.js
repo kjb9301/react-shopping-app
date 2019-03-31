@@ -1,20 +1,23 @@
 import React, { Component, Fragment } from 'react';
 import BasketList from 'components/basket/BasketList';
-import PayList from 'components/basket/PayList';
+import PayContainer from 'containers/PayContainer';
 
 class BasketContainer extends Component {
   state = {
     basketList: [],
-    orderList: []
+    payList: []
   }
 
   addToOrder = (id) => {
-    const { basketList } = this.state;
-    const index = basketList.map((item) => item.id === id);
+    const { basketList, payList } = this.state;
+    const index = basketList.findIndex((item) => item.id === id);
+    this.setState({
+      payList: payList.concat(basketList[index])
+    })
   }
 
   deleteInBasket = (id) => {
-    const { basketList } = this.state;
+    const { payList } = this.state;
   }
 
   componentWillMount(){
@@ -24,13 +27,13 @@ class BasketContainer extends Component {
   }
 
   render() {
-    const { basketList } = this.state;
+    const { basketList, payList } = this.state;
     const { addToOrder, deleteInBasket } = this;
-
+    console.log(payList)
     return (
       <Fragment>
         <BasketList basketList={basketList} addToOrder={addToOrder} deleteInBasket={deleteInBasket}/>
-        <PayList/>
+        <PayContainer payList={payList}/>
       </Fragment>
     );
   }
