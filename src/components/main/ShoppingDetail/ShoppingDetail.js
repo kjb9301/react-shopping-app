@@ -1,9 +1,11 @@
 import React from 'react';
 import './ShoppingDetail.scss';
 
-const ShoppingDetail = ({detailData, selectedOption, addToBasket, onChangeOption}) => {
+const ShoppingDetail = ({detailData, selectedOption, checkBasket, addToBasket, onChangeOption}) => {
+  console.log("shoppingDetail render")
   const { id } = detailData;
   const selectedInfo = {id, selectedOption};
+
   return (
     <div className="detail-wrapper">
       {detailData !== ''?
@@ -27,7 +29,7 @@ const ShoppingDetail = ({detailData, selectedOption, addToBasket, onChangeOption
               </div>
             </div>
             <div className="detail-btn">
-              <button onClick={() => addToBasket(selectedInfo)}>장바구니 담기</button>
+              <button onClick={() => checkBasket(selectedInfo)}>장바구니 담기</button>
             </div>
           </div>
         </div>

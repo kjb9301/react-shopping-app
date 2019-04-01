@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, PureComponent, Fragment } from 'react';
 import ShoppingDetail from 'components/main/ShoppingDetail';
 
-class DetailContainer extends Component {
+class DetailContainer extends PureComponent {
   state = { selectedOption: ''}
 
   onChangeOption = (e) => {
@@ -11,12 +11,14 @@ class DetailContainer extends Component {
   }
 
   render() {
-    const { detailData, addToBasket } = this.props;
+    console.log("detailContainer render")
+    const { detailData, checkBasket, addToBasket } = this.props;
     const { selectedOption } = this.state;
     const { onChangeOption } = this;
+    console.log(detailData)
     return (
       <Fragment>
-        <ShoppingDetail detailData={detailData} selectedOption={selectedOption} addToBasket={addToBasket} onChangeOption={onChangeOption}/>
+        <ShoppingDetail detailData={detailData} selectedOption={selectedOption} checkBasket={checkBasket} addToBasket={addToBasket} onChangeOption={onChangeOption}/>
       </Fragment>
     );
   }

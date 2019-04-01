@@ -1,12 +1,15 @@
 import React from 'react';
 import './PayList.scss';
 
-const PayList = ({payList, count, totalPrice}) => {
-  const payItems = payList.map((payItem,index) => {
+const PayList = ({payList, count, totalPrice, handleCount}) => {
+  const payItems = payList.map((payItem) => {
+    totalPrice = payItem.price * count
+    console.log(totalPrice)
     return (
-      <PayItem key={index} payItem={payItem} count={count}/>
+      <PayItem key={payItem.id} payItem={payItem} count={count} handleCount={handleCount}/>
     )
   })
+
   return (
     <div className="pay-list-wrapper">
       <div className="pay-header"><span>결제리스트</span></div>
@@ -30,7 +33,7 @@ const PayList = ({payList, count, totalPrice}) => {
   );
 };
 
-const PayItem = ({payItem,count}) => {
+const PayItem = ({payItem,count, handleCount}) => {
   return (
     <div className="pay-box">
       <div className="pay-x">&times;</div>
@@ -38,7 +41,7 @@ const PayItem = ({payItem,count}) => {
       <div className="pay-provider">{payItem.provider}</div>
       <div className="pay-option">{`${payItem.options.color} / ${payItem.options.size}`}</div>
       <div className="pay-count">
-        <input type="number" value={count}/>
+        <input type="number" name={payItem.id} defaultValue={count} onChange={handleCount} min="1"/>
       </div>
       <div className="pay-price">{payItem.price}원</div>
       <div className="pay-ship-price">{payItem.shipping.price}원</div>

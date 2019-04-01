@@ -10,14 +10,17 @@ class BasketContainer extends Component {
 
   addToOrder = (id) => {
     const { basketList, payList } = this.state;
-    const index = basketList.findIndex((item) => item.id === id);
     this.setState({
-      payList: payList.concat(basketList[index])
+      payList: payList.concat(basketList.filter((item) => item.id === id)),
+      basketList: basketList.filter((item) => item.id !== id)
     })
   }
 
   deleteInBasket = (id) => {
-    const { payList } = this.state;
+    const { basketList } = this.state;
+    this.setState({
+      basketList: basketList.filter((item) => item.id !== id)
+    })
   }
 
   componentWillMount(){
@@ -30,6 +33,7 @@ class BasketContainer extends Component {
     const { basketList, payList } = this.state;
     const { addToOrder, deleteInBasket } = this;
     console.log(payList)
+    console.log(basketList)
     return (
       <Fragment>
         <BasketList basketList={basketList} addToOrder={addToOrder} deleteInBasket={deleteInBasket}/>

@@ -28,7 +28,6 @@ const BasketList = ({basketList, addToOrder, deleteInBasket}) => {
 };
 
 const BasketItem = ({basketItem, addToOrder, deleteInBasket}) => {
-
   return (
     <div className="item-box">
       <div className="item-img">

@@ -9,10 +9,25 @@ class HomeContainer extends Component {
     basketData: []
   }
 
-  handleDetail = (item) => {
+  handleDetail = (listItem) => {
     this.setState({
-      detailData: item
+      detailData: listItem
     })
+  }
+
+  checkBasket = (info) => {
+    const { id, selectedOption } = info;
+    const { basketData } = this.state;
+    try{
+      const checkTF = basketData.some((item) => (item.id === id && item.options.id === Number(selectedOption)));
+      if(checkTF){
+        alert("이미 장바구니에 담겨져 있습니다.");
+      }else{
+        this.addToBasket(info);
+      }
+    }catch(err){
+      console.log(err);
+    }
   }
 
   addToBasket = (info) => {
@@ -21,13 +36,14 @@ class HomeContainer extends Component {
 
     try{
       const index = shoppingData.findIndex((data) => data.id === id );
-      const selectedData = shoppingData[index];
+      const selectedData = {...shoppingData[index]};
       const optionIdx = selectedData.options.findIndex((value) => value.id === Number(selectedOption));
       const option = selectedData.options[optionIdx];
       selectedData.options = option;
       
       this.setState({
-        basketData: basketData.concat(selectedData)
+        basketData: basketData.concat(selectedData),
+        detailData: ''
       })
       alert("해당 상품을 장바구니에 추가하였습니다");
     }catch(err){
@@ -42,20 +58,19 @@ class HomeContainer extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    const { detailData } = this.state;
     localStorage.basketData = JSON.stringify(nextState.basketData);
-    return detailData !== nextState.detailData;
+    return this.state.detailData !== nextState.detailData
   }
 
   render() {
     console.log("HomeContainer render")
     const { shoppingData, detailData } = this.state;
-    const { handleDetail, addToBasket } = this;
-    
+    const { handleDetail, addToBasket, checkBasket } = this;
+
     return (
       <Fragment>
         <ShoppingList shoppingList={shoppingData} onDetail={handleDetail}/>
-        <DetailContainer detailData={detailData} addToBasket={addToBasket}/>
+        <DetailContainer detailData={detailData} checkBasket={checkBasket} addToBasket={addToBasket}/>
       </Fragment>
     );
   }
