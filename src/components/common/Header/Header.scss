@@ -3,10 +3,12 @@
   display: flex;
   align-items: center;
   border-bottom: 2px solid #ccc;
+  background-color: rgb(230, 227, 224);
+  border-radius: 20px;
 
   ul {
     margin: 0;
-    padding-left: 80px;
+    padding-left: 5%;
     display: flex;
   
     li {
@@ -15,14 +17,22 @@
       padding: 5px;
       list-style: none;
       padding: 0 20px 0 20px;
+      font-weight: bolder;
+      color: #ccc;
   
       &:hover {
         cursor: pointer;
-        box-shadow: 0 8px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 3px 0 rgb(107, 106, 106);
       }
 
       a {
         text-decoration: none;
+
+        &:visited {
+          text-decoration: none;
+          color: rgb(107, 106, 106);
+        }
+        
       }
     }
   }

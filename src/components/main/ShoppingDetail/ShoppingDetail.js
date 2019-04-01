@@ -1,7 +1,7 @@
 import React from 'react';
 import './ShoppingDetail.scss';
 
-const ShoppingDetail = ({detailData, selectedOption, checkBasket, addToBasket, onChangeOption}) => {
+const ShoppingDetail = ({detailData, selectedOption, checkBasket, HandleChangeOption}) => {
   console.log("shoppingDetail render")
   const { id } = detailData;
   const selectedInfo = {id, selectedOption};
@@ -20,7 +20,7 @@ const ShoppingDetail = ({detailData, selectedOption, checkBasket, addToBasket, o
               <div className="detail-price">상품가격:<span>{detailData.price}원</span></div>
               <div className="detail-price">배송비:<span>{detailData.shipping.price}원</span></div>
               <div className="detail-price">
-                <select onChange={onChangeOption}>
+                <select onChange={HandleChangeOption}>
                   <option value=''>--옵션선택--</option>
                   {detailData.options.map((option,index) => {
                     return (<option key={index} value={option.id}>{`${option.color} / ${option.size}`}</option>)

@@ -1,10 +1,12 @@
 import React from 'react';
 import './PayList.scss';
+import PayItem from 'components/basket/PayItem';
 
-const PayList = ({payList, totalPrice, handleCount}) => {
+const PayList = ({payList, totalPrice, handleCount, deleteInPayList}) => {
   const payItems = payList.map((payItem,index) => {
+    totalPrice = payItem.price * payItem.count;
     return (
-      <PayItem key={index} payItem={payItem} handleCount={handleCount}/>
+      <PayItem key={index} payItem={payItem} handleCount={handleCount} deleteInPayList={deleteInPayList}/>
     )
   })
 
@@ -30,21 +32,5 @@ const PayList = ({payList, totalPrice, handleCount}) => {
     </div>
   );
 };
-
-const PayItem = ({payItem, handleCount}) => {
-  return (
-    <div className="pay-box">
-      <div className="pay-x">&times;</div>
-      <div className="pay-name">{payItem.name}</div>
-      <div className="pay-provider">{payItem.provider}</div>
-      <div className="pay-option">{`${payItem.options.color} / ${payItem.options.size}`}</div>
-      <div className="pay-count">
-        <input type="number" name={payItem.id} defaultValue={payItem.count} onChange={handleCount} min="1"/>
-      </div>
-      <div className="pay-price">{payItem.price}원</div>
-      <div className="pay-ship-price">{payItem.shipping.price}원</div>
-    </div>
-  )
-}
 
 export default PayList;

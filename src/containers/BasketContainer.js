@@ -35,6 +35,16 @@ class BasketContainer extends Component {
     }
   }
 
+  // handleCount = (e) => {
+  //   const {name, value} = e.target;
+    
+  //   const { payList } = this.state;
+  //   this.setState({
+  //     count: value
+  //   })
+
+  // }
+
   componentWillMount(){
     this.setState({
       basketList: JSON.parse(localStorage.getItem("basketData"))

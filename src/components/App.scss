@@ -7,8 +7,8 @@ html, body {
 }
 
 .wrapper {
-  border: 1px solid blue;
   height: 100%;
   display: flex;
   flex-direction: column;
+  padding: 10px;
 }
