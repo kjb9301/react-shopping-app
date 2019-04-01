@@ -5,22 +5,34 @@ import PayContainer from 'containers/PayContainer';
 class BasketContainer extends Component {
   state = {
     basketList: [],
-    payList: []
+    payList: [],
   }
 
-  addToOrder = (id) => {
+  addToOrder = (id,opId) => {
     const { basketList, payList } = this.state;
-    this.setState({
-      payList: payList.concat(basketList.filter((item) => item.id === id)),
-      basketList: basketList.filter((item) => item.id !== id)
-    })
+    try{
+      let newPayList = basketList.filter((item) => (item.id === id && item.options.id === opId));
+      newPayList = newPayList.map(item => item = {...item, count:1});
+      const newBasketList = basketList.filter((item) => (item.id !== id || (item.id === id && item.options.id !== opId)));
+      
+      this.setState({
+        payList: payList.concat(newPayList),
+        basketList: newBasketList
+      })
+    }catch(err){
+      console.log(err);
+    }
   }
 
-  deleteInBasket = (id) => {
+  deleteInBasket = (id,opId) => {
     const { basketList } = this.state;
-    this.setState({
-      basketList: basketList.filter((item) => item.id !== id)
-    })
+    try{
+      this.setState({
+        basketList: basketList.filter((item) => (item.id !== id || (item.id === id && item.options.id !== opId)))
+      })
+    }catch(err){
+      console.log(err);
+    }
   }
 
   componentWillMount(){
@@ -32,8 +44,7 @@ class BasketContainer extends Component {
   render() {
     const { basketList, payList } = this.state;
     const { addToOrder, deleteInBasket } = this;
-    console.log(payList)
-    console.log(basketList)
+
     return (
       <Fragment>
         <BasketList basketList={basketList} addToOrder={addToOrder} deleteInBasket={deleteInBasket}/>

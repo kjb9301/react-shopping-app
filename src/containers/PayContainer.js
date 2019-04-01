@@ -4,26 +4,27 @@ import PayList from 'components/basket/PayList';
 class PayContainer extends Component {
   state = {
     totalPrice: 0,
-    count: 1
+    count: 0
   }
 
   handleCount = (e) => {
     const {name, value} = e.target;
-    console.log(name)
-    console.log(value)
+    
+    const { payList } = this.props;
     this.setState({
       count: value
     })
+
   }
 
   render() {
     const { payList } = this.props;
-    const { count, totalPrice } = this.state;
+    const { totalPrice, count } = this.state;
     const { handleCount } = this;
     console.log(count)
     return (
       <Fragment>
-        <PayList payList={payList} count={count} totalPrice={totalPrice} handleCount={handleCount}/>
+        <PayList payList={payList} totalPrice={totalPrice} handleCount={handleCount}/>
       </Fragment>
     );
   }

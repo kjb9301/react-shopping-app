@@ -39,8 +39,8 @@ const BasketItem = ({basketItem, addToOrder, deleteInBasket}) => {
       <div className="item-price">{basketItem.price}원</div>
       <div className="item-ship-price">{basketItem.shipping.price}원</div>
       <div className="item-btn">
-        <div className="btn-order"><button onClick={() => addToOrder(basketItem.id)}>주문</button></div>
-        <div className="btn-delete"><button onClick={() => deleteInBasket(basketItem.id)}>삭제</button></div>
+        <div className="btn-order"><button onClick={() => addToOrder(basketItem.id,basketItem.options.id)}>주문</button></div>
+        <div className="btn-delete"><button onClick={() => deleteInBasket(basketItem.id,basketItem.options.id)}>삭제</button></div>
       </div>
     </div>
   )
