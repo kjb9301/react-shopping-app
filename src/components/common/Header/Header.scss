@@ -14,11 +14,11 @@
     li {
       font-size: 2rem;
       line-height: 5rem;
-      padding: 5px;
       list-style: none;
       padding: 0 20px 0 20px;
       font-weight: bolder;
       color: #ccc;
+
   
       &:hover {
         cursor: pointer;
@@ -33,6 +33,17 @@
           color: rgb(107, 106, 106);
         }
         
+      }
+    }
+
+    @media (max-width:1360px){
+      li {
+        font-size: 1rem;
+        line-height: 3rem;
+
+        &:hover {
+          box-shadow: 0 2px 0 rgb(107, 106, 106);
+        }
       }
     }
   }

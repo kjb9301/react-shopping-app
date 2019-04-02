@@ -28,6 +28,13 @@
         margin: 2px;
         background-color: rgb(250, 232, 198);
       }
+
+      @media (max-width:1360px){
+        div {
+          font-size: 15px;
+          margin: 1px;
+        }
+      }
     }
 
     .basket-content {
