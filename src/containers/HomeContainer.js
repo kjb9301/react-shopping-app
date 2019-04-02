@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ShoppingList from 'components/main/ShoppingList';
+import ListContainer from 'containers/ListContainer';
 import DetailContainer from 'containers/DetailContainer';
 
 class HomeContainer extends Component {
@@ -62,7 +63,7 @@ class HomeContainer extends Component {
 
     return (
       <>
-        <ShoppingList shoppingList={shoppingData} handleDetail={handleDetail}/>
+        <ListContainer shoppingList={shoppingData} handleDetail={handleDetail}/>
         <DetailContainer detailData={detailData} checkBasket={checkBasket} addToBasket={addToBasket}/>
       </>
     );

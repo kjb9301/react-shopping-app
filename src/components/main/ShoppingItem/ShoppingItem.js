@@ -2,7 +2,6 @@ import React from 'react';
 import './ShoppingItem.scss';
 
 const ShoppingItem = ({listItem,handleDetail}) => {
-  console.log("shoppingLItem render")
 
   return (
     <div className="item-wrapper">

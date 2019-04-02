@@ -56,7 +56,6 @@
   .pay-footer {
     flex: 1;
     display: flex;
-    background-color: rgb(250, 209, 134);
 
     .pay-total {
       flex: 2;
@@ -67,6 +66,7 @@
       flex-direction: row-reverse;
       padding: 20px;
       border: 1px solid rgb(116, 114, 114);
+      background-color: rgb(250, 209, 134);
 
       span {
         font-size: 100px;
