@@ -3,7 +3,6 @@ import './ShoppingList.scss';
 import ShoppingItem from 'components/main/ShoppingItem'
 
 const ShoppingList = ({shoppingList,handleDetail}) => {
-  
   const listItems = shoppingList.map((listItem) => {
     return (
       <ShoppingItem

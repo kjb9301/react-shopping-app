@@ -11,7 +11,6 @@ class DetailContainer extends PureComponent {
   }
 
   render() {
-    console.log("detailContainer render")
     const { detailData, checkBasket, addToBasket } = this.props;
     const { selectedOption } = this.state;
     const { HandleChangeOption } = this;

@@ -10,7 +10,10 @@ class ListContainer extends Component {
   render() {
     const { shoppingList,handleDetail } = this.props;
     return (
-      <ShoppingList shoppingList={shoppingList} handleDetail={handleDetail}/>
+      <ShoppingList
+        shoppingList={shoppingList}
+        handleDetail={handleDetail}
+      />
     );
   }
 }

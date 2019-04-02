@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import BasketContainer from 'containers/BasketContainer';
-import PayContainer from 'containers/PayContainer';
+import BasketContainer from 'containers/BasketPage/BasketContainer';
+import PayContainer from 'containers/BasketPage/PayContainer';
 
 class BasketPageContainer extends Component {
   state = {
     basketList: [],
-    payList: [],
-    totalPrice: 0
+    payList: []
   }
 
   addToOrder = (id,opId) => {
     const { basketList } = this.state;
-    let newPayList = basketList.filter((item) => (item.id === id && item.options.id === opId));
-    newPayList = newPayList.map(item => item = {...item, count:1});
+    const newPayList = basketList.map(item => item = {...item, count:1})
+                                  .filter((item) => (item.id === id && item.options.id === opId));
+
     const newBasketList = basketList.filter((item) => (item.id !== id || (item.id === id && item.options.id !== opId)));
-    
     this.setState((prevState) => ({
       payList: prevState.payList.concat(newPayList),
       basketList: newBasketList
@@ -22,14 +21,14 @@ class BasketPageContainer extends Component {
   }
 
   deleteInBasket = (id,opId) => {
-    this.setState((prevState) => ({
-      basketList: prevState.basketList.filter((item) => (item.id !== id || (item.id === id && item.options.id !== opId)))
-    }))
+    const { basketList } = this.state;
+    const newBasketList = basketList.filter((item) => (item.id !== id || (item.id === id && item.options.id !== opId)));
+    this.setState({
+      basketList: newBasketList
+    })
   }
 
-  deleteInPayList = (id_Op) => {
-    const id = Number(id_Op.split("_")[0]);
-    const opId = Number(id_Op.split("_")[1]);
+  deleteInPayList = (id,opId) => {
     const { payList } = this.state;
     const newPayList = payList.filter((item) => (item.id !== id || (item.id === id && item.options.id !== opId)));
     this.setState({
@@ -49,7 +48,7 @@ class BasketPageContainer extends Component {
 
     if(Number(value) > newItem.options.stock){
       alert("더 이상 재고가 없습니다.");
-      return false;
+      return;
     }
 
     const newPayList = [
@@ -63,22 +62,6 @@ class BasketPageContainer extends Component {
     })
   }
 
-  // handleTotalPrice = () => {
-  //   const { payList } = this.state;
-  //   let itemPrice = 0;
-  //   let shipPrice = 0;
-  //   payList.forEach((item) => {
-  //     itemPrice += item.price * item.count;
-  //     shipPrice += item.shipping.price;
-  //   })
-
-  //   const total = itemPrice + shipPrice;
-    
-  //   this.setState({
-  //     totalPrice: total
-  //   })
-  // }
-
   componentWillMount(){
     this.setState({
       basketList: JSON.parse(localStorage.getItem("basketData"))
@@ -86,9 +69,8 @@ class BasketPageContainer extends Component {
   }
 
   render() {
-    console.log("BasketPageContainer render")
     const { basketList, payList } = this.state;
-    const { addToOrder, deleteInBasket, deleteInPayList, changeCount, handleKeyPress } = this;
+    const { addToOrder, deleteInBasket, deleteInPayList, changeCount } = this;
 
     return (
       <>
@@ -100,7 +82,6 @@ class BasketPageContainer extends Component {
         <PayContainer
           payList={payList}
           changeCount={changeCount}
-          handleKeyPress={handleKeyPress}
           deleteInPayList={deleteInPayList}
         />
       </>

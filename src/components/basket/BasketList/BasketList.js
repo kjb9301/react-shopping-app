@@ -3,12 +3,11 @@ import './BasketList.scss';
 import BasketItem from 'components/basket/BasketItem';
 
 const BasketList = ({basketList, addToOrder, deleteInBasket}) => {
-  console.log("basketList render")
-  const basketItems = basketList.map((basketItem,index) => {
-    
+  const basketItems = basketList.map((basketItem) => {
+    const id_Op = `${basketItem}_${basketItem.options.id}`;
     return (
       <BasketItem
-        key={index}
+        key={id_Op}
         basketItem={basketItem}
         addToOrder={addToOrder}
         deleteInBasket={deleteInBasket}

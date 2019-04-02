@@ -6,11 +6,9 @@ class BasketContainer extends Component {
   shouldComponentUpdate(nextProps,nextState){
     return this.props.basketList !== nextProps.basketList;
   }
-  
-  render() {
-    console.log("basketContainer render")
-    const { basketList, addToOrder, deleteInBasket } = this.props;
 
+  render() {
+    const { basketList, addToOrder, deleteInBasket } = this.props;
     return (
       <BasketList
         basketList={basketList}
