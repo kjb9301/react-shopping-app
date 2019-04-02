@@ -54,7 +54,7 @@
   }
 
   .pay-footer {
-    flex: 1;
+    flex: .5;
     display: flex;
 
     .pay-total {
@@ -93,12 +93,6 @@
         border-radius: 20px;
         cursor: pointer;
       }
-    }
-  }
-
-  @media (max-width:1360px){
-    .pay-footer {
-      flex: .5;
     }
   }
 }

@@ -3,6 +3,8 @@ import './PayList.scss';
 import PayItem from 'components/basket/PayItem';
 
 const PayList = ({payList, totalPrice, changeCount, deleteInPayList, handleKeyPress}) => {
+  console.log("payList render")
+  console.log(totalPrice)
   const payItems = payList.map((payItem,index) => {
     const id_Op = `${payItem.id}_${payItem.options.id}`;
     return (

@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import PayList from 'components/basket/PayList';
 
 class PayContainer extends Component {
-  state = {
-    totalPrice: 0,
+
+  shouldComponentUpdate(nextProps,nextState){
+    return this.props.payList !== nextProps.payList;
   }
 
   render() {
-    const { payList, changeCount, handleKeyPress } = this.props;
-    const { totalPrice } = this.state;
-    const { deleteInPayList } = this;
+    console.log("payContainer render")
+    const { payList, changeCount, handleKeyPress, deleteInPayList } = this.props;
     
     return (
       <PayList
         payList={payList}
-        totalPrice={totalPrice}
+        //totalPrice={totalPrice}
         changeCount={changeCount}
         deleteInPayList={deleteInPayList}
         handleKeyPress={handleKeyPress}

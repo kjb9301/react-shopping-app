@@ -5,7 +5,8 @@ import PayContainer from 'containers/PayContainer';
 class BasketContainer extends Component {
   state = {
     basketList: [],
-    payList: []
+    payList: [],
+    totalPrice: 0
   }
 
   addToOrder = (id,opId) => {
@@ -26,8 +27,14 @@ class BasketContainer extends Component {
     }))
   }
 
-  deleteInPayList = (id) => {
-
+  deleteInPayList = (id_Op) => {
+    const id = Number(id_Op.split("_")[0]);
+    const opId = Number(id_Op.split("_")[1]);
+    const { payList } = this.state;
+    const newPayList = payList.filter((item) => (item.id !== id || (item.id === id && item.options.id !== opId)));
+    this.setState({
+      payList: newPayList
+    })
   }
 
   handleKeyPress = (e) => {
@@ -54,6 +61,20 @@ class BasketContainer extends Component {
     })
   }
 
+  // handleTotalPrice = () => {
+  //   const { payList } = this.state;
+  //   let total = 0;
+  //   let shipPrice = 0;
+  //   payList.forEach((item) => {
+  //     total += item.price * item.count;
+  //     shipPrice += item.shipping.price;
+  //   })
+    
+  //   this.setState({
+  //     totalPrice: total + shipPrice
+  //   })
+  // }
+
   componentWillMount(){
     this.setState({
       basketList: JSON.parse(localStorage.getItem("basketData"))
@@ -61,9 +82,10 @@ class BasketContainer extends Component {
   }
 
   render() {
+    console.log("basketContainer render")
     const { basketList, payList } = this.state;
-    const { addToOrder, deleteInBasket, changeCount, handleKeyPress } = this;
-    console.log(payList)
+    const { addToOrder, deleteInBasket, deleteInPayList, changeCount, handleKeyPress } = this;
+
     return (
       <>
         <BasketList
@@ -75,6 +97,7 @@ class BasketContainer extends Component {
           payList={payList}
           changeCount={changeCount}
           handleKeyPress={handleKeyPress}
+          deleteInPayList={deleteInPayList}
         />
       </>
     );

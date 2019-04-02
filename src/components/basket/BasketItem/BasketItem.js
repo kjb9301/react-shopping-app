@@ -2,6 +2,7 @@ import React from 'react';
 import './BasketItem.scss';
 
 const BasketItem = ({basketItem, addToOrder, deleteInBasket}) => {
+  console.log("basketItem render")
   return (
     <div className="item-box">
       <div className="item-img">

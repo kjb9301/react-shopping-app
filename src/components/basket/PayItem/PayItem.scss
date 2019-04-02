@@ -1,6 +1,6 @@
 .pay-box {
   display: flex;
-  height: 70px;
+  height: 150px;
   border-bottom: 1px solid gray;
 
   .pay-x {
@@ -27,4 +27,10 @@
   input {
     text-align: center;
   }
-} 
+}
+
+@media (max-width:1360px){
+  .pay-box {
+    height: 70px;
+  }
+}

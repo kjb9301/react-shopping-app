@@ -2,7 +2,7 @@ import React from 'react';
 import './PayItem.scss';
 
 const PayItem = ({id_Op, payItem, changeCount, deleteInPayList, handleKeyPress}) => {
-
+  console.log("payItem render")
   return (
     <div className="pay-box">
       <div className="pay-x" onClick={() => deleteInPayList(id_Op)}>&times;</div>
