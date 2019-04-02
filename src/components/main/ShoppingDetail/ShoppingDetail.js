@@ -2,12 +2,8 @@ import React from 'react';
 import './ShoppingDetail.scss';
 
 const ShoppingDetail = ({detailData, selectedOption, checkBasket, HandleChangeOption}) => {
-  console.log("shoppingDetail render")
   const { id } = detailData;
-  const test = `${id}_${selectedOption}`;
-  console.log(test)
   const selectedInfo = {id, selectedOption};
-
   return (
     <div className="detail-wrapper">
       {detailData !== ''?

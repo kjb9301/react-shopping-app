@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
 import ListContainer from 'containers/MainPage/ListContainer';
 import DetailContainer from 'containers/MainPage/DetailContainer';
+import axios from 'axios';
+import img from 'images/item.png';
 
 class HomeContainer extends Component {
   state = {
     shoppingData: [],
     basketData: [],
-    detailData: '',
+    detailData: ''
   }
 
-  componentWillMount(){
-    this.setState({
-      shoppingData: JSON.parse(localStorage.getItem("shoppingData"))
-    })
+  componentDidMount(){
+    axios.get('dummy/goods.json')
+      .then((obj) => {
+        const goods = obj.data.goods.map((good) => good = {...good, img})
+        localStorage.shoppingData = JSON.stringify(goods);
+      })
+      .then(() => {
+        const data = JSON.parse(localStorage.getItem("shoppingData"));
+        this.setState({
+          shoppingData: data
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   handleDetail = (listItem) => {
@@ -52,15 +65,10 @@ class HomeContainer extends Component {
     alert("해당 상품을 장바구니에 추가하였습니다");
   }
 
-  shouldComponentUpdate(nextProps, nextState){
-    localStorage.basketData = JSON.stringify(nextState.basketData);
-    return this.state.detailData !== nextState.detailData
-  }
-
   render() {
     const { shoppingData, detailData } = this.state;
     const { handleDetail, addToBasket, checkBasket } = this;
-    
+
     return (
       <>
         <ListContainer

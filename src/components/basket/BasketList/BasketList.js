@@ -14,6 +14,7 @@ const BasketList = ({basketList, addToOrder, deleteInBasket}) => {
       />
     )
   })
+  
   return (
     <div className="basket-list-wrapper">
       <div className="basket-list-box">

@@ -2,7 +2,6 @@ import React from 'react';
 import './ShoppingItem.scss';
 
 const ShoppingItem = ({listItem,handleDetail}) => {
-
   return (
     <div className="item-wrapper">
       <div className="item-box" onClick={() => handleDetail(listItem)}>

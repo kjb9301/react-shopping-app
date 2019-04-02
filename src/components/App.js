@@ -3,25 +3,11 @@ import './App.scss';
 import Header from './common/Header';
 import { Route } from 'react-router-dom';
 import { MainPage, BasketPage } from 'pages';
-import axios from 'axios';
-import img from 'images/item.png';
 
 class App extends Component {
-  componentWillMount(){
-    axios.get('dummy/goods.json')
-      .then((obj) => {
-        const goods = obj.data.goods.map((good) => {
-          good = {...good, img}
-          return good;
-        })
-        localStorage.shoppingData = JSON.stringify(goods);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
 
   render() {
+    console.log("App")
     return (
       <div className="wrapper">
         <Header/>

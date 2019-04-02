@@ -62,7 +62,7 @@ class BasketPageContainer extends Component {
     })
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.setState({
       basketList: JSON.parse(localStorage.getItem("basketData"))
     })

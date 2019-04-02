@@ -3,6 +3,7 @@ import Section from 'components/common/Section';
 import HomeContainer from 'containers/MainPage/HomeContainer';
 
 const MainPage = () => {
+  console.log("main page")
   return (
     <Section>
       <HomeContainer/>
