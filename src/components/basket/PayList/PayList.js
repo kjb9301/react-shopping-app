@@ -2,15 +2,17 @@ import React from 'react';
 import './PayList.scss';
 import PayItem from 'components/basket/PayItem';
 
-const PayList = ({payList, totalPrice, handleCount, deleteInPayList}) => {
+const PayList = ({payList, totalPrice, changeCount, deleteInPayList, handleKeyPress}) => {
   const payItems = payList.map((payItem,index) => {
-    totalPrice = payItem.price * payItem.count;
+    const id_Op = `${payItem.id}_${payItem.options.id}`;
     return (
       <PayItem
-        key={index}
+        key={id_Op}
+        id_Op={id_Op}
         payItem={payItem}
-        handleCount={handleCount}
+        changeCount={changeCount}
         deleteInPayList={deleteInPayList}
+        handleKeyPress={handleKeyPress}
       />
     )
   })

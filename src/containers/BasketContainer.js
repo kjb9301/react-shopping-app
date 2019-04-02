@@ -5,8 +5,7 @@ import PayContainer from 'containers/PayContainer';
 class BasketContainer extends Component {
   state = {
     basketList: [],
-    payList: [],
-    targetCount: 0
+    payList: []
   }
 
   addToOrder = (id,opId) => {
@@ -27,19 +26,32 @@ class BasketContainer extends Component {
     }))
   }
 
-  handleCount = (e) => {
-    const {name, value} = e.target;
-    
-    const { payList } = this.state;
-    const idx = payList.findIndex(item => item.id === Number(name))
-    const newItem = {...payList[idx]};
-    newItem.count++;
-    let countValue = value;
-    console.log(countValue);
+  deleteInPayList = (id) => {
 
-    this.setState((prevState) => ({
-      payList : [...payList.slice(0,idx),newItem,...payList.slice(idx+1,payList.length)]
-    }))
+  }
+
+  handleKeyPress = (e) => {
+    console.log(e.target.value)
+  }
+
+  changeCount = (e) => {
+    const { name, value } = e.target;
+    const id = Number(name.split("_")[0]);
+    const opId = Number(name.split("_")[1]);
+
+    const { payList } = this.state;
+    const index = payList.findIndex(item => item.id === id && item.options.id === opId);
+    const newItem = {...payList[index]};
+    newItem.count = Number(value);
+    const newPayList = [
+      ...payList.slice(0, index),
+      newItem,
+      ...payList.slice(index+1, payList.length)
+    ];
+
+    this.setState({
+      payList : newPayList
+    })
   }
 
   componentWillMount(){
@@ -50,7 +62,7 @@ class BasketContainer extends Component {
 
   render() {
     const { basketList, payList } = this.state;
-    const { addToOrder, deleteInBasket, handleCount } = this;
+    const { addToOrder, deleteInBasket, changeCount, handleKeyPress } = this;
     console.log(payList)
     return (
       <>
@@ -59,7 +71,11 @@ class BasketContainer extends Component {
           addToOrder={addToOrder}
           deleteInBasket={deleteInBasket}
         />
-        <PayContainer payList={payList} handleCount={handleCount}/>
+        <PayContainer
+          payList={payList}
+          changeCount={changeCount}
+          handleKeyPress={handleKeyPress}
+        />
       </>
     );
   }
