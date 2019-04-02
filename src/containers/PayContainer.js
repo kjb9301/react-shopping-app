@@ -17,9 +17,9 @@ class PayContainer extends Component {
   }
 
   render() {
-    const { payList } = this.props;
+    const { payList, handleCount } = this.props;
     const { totalPrice, count } = this.state;
-    const { handleCount, deleteInPayList } = this;
+    const { deleteInPayList } = this;
     
     return (
       <PayList

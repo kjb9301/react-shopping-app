@@ -6,6 +6,7 @@ class BasketContainer extends Component {
   state = {
     basketList: [],
     payList: [],
+    targetCount: 0
   }
 
   addToOrder = (id,opId) => {
@@ -26,15 +27,20 @@ class BasketContainer extends Component {
     }))
   }
 
-  // handleCount = (e) => {
-  //   const {name, value} = e.target;
+  handleCount = (e) => {
+    const {name, value} = e.target;
     
-  //   const { payList } = this.state;
-  //   this.setState({
-  //     count: value
-  //   })
+    const { payList } = this.state;
+    const idx = payList.findIndex(item => item.id === Number(name))
+    const newItem = {...payList[idx]};
+    newItem.count++;
+    let countValue = value;
+    console.log(countValue);
 
-  // }
+    this.setState((prevState) => ({
+      payList : [...payList.slice(0,idx),newItem,...payList.slice(idx+1,payList.length)]
+    }))
+  }
 
   componentWillMount(){
     this.setState({
@@ -44,8 +50,8 @@ class BasketContainer extends Component {
 
   render() {
     const { basketList, payList } = this.state;
-    const { addToOrder, deleteInBasket } = this;
-
+    const { addToOrder, deleteInBasket, handleCount } = this;
+    console.log(payList)
     return (
       <>
         <BasketList
@@ -53,7 +59,7 @@ class BasketContainer extends Component {
           addToOrder={addToOrder}
           deleteInBasket={deleteInBasket}
         />
-        <PayContainer payList={payList}/>
+        <PayContainer payList={payList} handleCount={handleCount}/>
       </>
     );
   }
