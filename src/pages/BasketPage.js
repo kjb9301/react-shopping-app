@@ -1,11 +1,11 @@
 import React from 'react';
 import Section from 'components/common/Section';
-import BasketContainer from 'containers/BasketContainer';
+import BasketPageContainer from 'containers/BasketPageContainer';
 
 const BasketPage = () => {
   return (
     <Section>
-      <BasketContainer/>
+      <BasketPageContainer/>
     </Section>
   );
 };
