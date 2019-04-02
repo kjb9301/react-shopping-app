@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import BasketList from 'components/basket/BasketList';
 import PayContainer from 'containers/PayContainer';
 
@@ -9,30 +9,21 @@ class BasketContainer extends Component {
   }
 
   addToOrder = (id,opId) => {
-    const { basketList, payList } = this.state;
-    try{
-      let newPayList = basketList.filter((item) => (item.id === id && item.options.id === opId));
-      newPayList = newPayList.map(item => item = {...item, count:1});
-      const newBasketList = basketList.filter((item) => (item.id !== id || (item.id === id && item.options.id !== opId)));
-      
-      this.setState({
-        payList: payList.concat(newPayList),
-        basketList: newBasketList
-      })
-    }catch(err){
-      console.log(err);
-    }
+    const { basketList } = this.state;
+    let newPayList = basketList.filter((item) => (item.id === id && item.options.id === opId));
+    newPayList = newPayList.map(item => item = {...item, count:1});
+    const newBasketList = basketList.filter((item) => (item.id !== id || (item.id === id && item.options.id !== opId)));
+    
+    this.setState((prevState) => ({
+      payList: prevState.payList.concat(newPayList),
+      basketList: newBasketList
+    }))
   }
 
   deleteInBasket = (id,opId) => {
-    const { basketList } = this.state;
-    try{
-      this.setState({
-        basketList: basketList.filter((item) => (item.id !== id || (item.id === id && item.options.id !== opId)))
-      })
-    }catch(err){
-      console.log(err);
-    }
+    this.setState((prevState) => ({
+      basketList: prevState.basketList.filter((item) => (item.id !== id || (item.id === id && item.options.id !== opId)))
+    }))
   }
 
   // handleCount = (e) => {
@@ -56,10 +47,14 @@ class BasketContainer extends Component {
     const { addToOrder, deleteInBasket } = this;
 
     return (
-      <Fragment>
-        <BasketList basketList={basketList} addToOrder={addToOrder} deleteInBasket={deleteInBasket}/>
+      <>
+        <BasketList
+          basketList={basketList}
+          addToOrder={addToOrder}
+          deleteInBasket={deleteInBasket}
+        />
         <PayContainer payList={payList}/>
-      </Fragment>
+      </>
     );
   }
 }

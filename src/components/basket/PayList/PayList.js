@@ -6,7 +6,12 @@ const PayList = ({payList, totalPrice, handleCount, deleteInPayList}) => {
   const payItems = payList.map((payItem,index) => {
     totalPrice = payItem.price * payItem.count;
     return (
-      <PayItem key={index} payItem={payItem} handleCount={handleCount} deleteInPayList={deleteInPayList}/>
+      <PayItem
+        key={index}
+        payItem={payItem}
+        handleCount={handleCount}
+        deleteInPayList={deleteInPayList}
+      />
     )
   })
 

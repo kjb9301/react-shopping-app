@@ -5,7 +5,12 @@ import BasketItem from 'components/basket/BasketItem';
 const BasketList = ({basketList, addToOrder, deleteInBasket}) => {
   const basketItems = basketList.map((basketItem,index) => {
     return (
-      <BasketItem key={index} basketItem={basketItem} addToOrder={addToOrder} deleteInBasket={deleteInBasket}/>
+      <BasketItem
+        key={index}
+        basketItem={basketItem}
+        addToOrder={addToOrder}
+        deleteInBasket={deleteInBasket}
+      />
     )
   })
   return (

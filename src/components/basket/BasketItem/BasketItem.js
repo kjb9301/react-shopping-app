@@ -5,7 +5,7 @@ const BasketItem = ({basketItem, addToOrder, deleteInBasket}) => {
   return (
     <div className="item-box">
       <div className="item-img">
-        <div className="img"><img src={basketItem.img}/></div>
+        <div className="img"><img src={basketItem.img} alt={basketItem.name}/></div>
       </div>
       <div className="item-name">{basketItem.name}</div>
       <div className="item-provider">{basketItem.provider}</div>

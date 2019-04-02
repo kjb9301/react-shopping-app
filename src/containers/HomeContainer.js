@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import ShoppingList from 'components/main/ShoppingList';
 import DetailContainer from 'containers/DetailContainer';
 
@@ -18,37 +18,31 @@ class HomeContainer extends Component {
   checkBasket = (info) => {
     const { id, selectedOption } = info;
     const { basketData } = this.state;
-    try{
-      if(!selectedOption) return alert("옵션을 선택해 주십시오.");
-      const checkTF = basketData.some((item) => (item.id === id && item.options.id === Number(selectedOption)));
-      if(checkTF){
-        alert("이미 장바구니에 담겨져 있습니다.");
-      }else{
-        this.addToBasket(info);
-      }
-    }catch(err){
-      console.log(err);
+
+    if(!selectedOption) return alert("옵션을 선택해 주십시오.");
+    const checkTF = basketData.some((item) => (item.id === id && item.options.id === Number(selectedOption)));
+    if(checkTF){
+      alert("이미 장바구니에 담겨져 있습니다.");
+    }else{
+      this.addToBasket(info);
     }
   }
 
   addToBasket = (info) => {
     const { id, selectedOption } = info;
-    const { shoppingData, basketData } = this.state;
-    try{
-      const index = shoppingData.findIndex((data) => data.id === id );
-      const selectedData = {...shoppingData[index]};
-      const optionIdx = selectedData.options.findIndex((value) => value.id === Number(selectedOption));
-      const option = selectedData.options[optionIdx];
-      selectedData.options = option;
-      
-      this.setState({
-        basketData: basketData.concat(selectedData),
-        detailData: ''
-      })
-      alert("해당 상품을 장바구니에 추가하였습니다");
-    }catch(err){
-      console.log(err);
-    }
+    const { shoppingData } = this.state;
+
+    const index = shoppingData.findIndex((data) => data.id === id );
+    const selectedData = {...shoppingData[index]};
+    const optionIdx = selectedData.options.findIndex((value) => value.id === Number(selectedOption));
+    const option = selectedData.options[optionIdx];
+    selectedData.options = option;
+    
+    this.setState((prevState) => ({
+      basketData: prevState.basketData.concat(selectedData),
+      detailData: ''
+    }))
+    alert("해당 상품을 장바구니에 추가하였습니다");
   }
 
   componentWillMount(){
@@ -67,10 +61,10 @@ class HomeContainer extends Component {
     const { handleDetail, addToBasket, checkBasket } = this;
 
     return (
-      <Fragment>
+      <>
         <ShoppingList shoppingList={shoppingData} handleDetail={handleDetail}/>
         <DetailContainer detailData={detailData} checkBasket={checkBasket} addToBasket={addToBasket}/>
-      </Fragment>
+      </>
     );
   }
 }

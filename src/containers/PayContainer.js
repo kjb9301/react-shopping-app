@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PayList from 'components/basket/PayList';
 
 class PayContainer extends Component {
@@ -22,14 +22,12 @@ class PayContainer extends Component {
     const { handleCount, deleteInPayList } = this;
     
     return (
-      <Fragment>
-        <PayList
-          payList={payList}
-          totalPrice={totalPrice}
-          handleCount={handleCount}
-          deleteInPayList={deleteInPayList}
-        />
-      </Fragment>
+      <PayList
+        payList={payList}
+        totalPrice={totalPrice}
+        handleCount={handleCount}
+        deleteInPayList={deleteInPayList}
+      />
     );
   }
 }
