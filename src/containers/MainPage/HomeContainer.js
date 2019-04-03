@@ -11,21 +11,6 @@ class HomeContainer extends Component {
     detailData: ''
   }
 
-  componentDidMount(){
-    if(!localStorage.shoppingData){
-      this.initialSet();
-    }else{
-      this.setState({
-        shoppingData: JSON.parse(localStorage.getItem("shoppingData")),
-      })
-      if(localStorage.basketData){
-        this.setState({
-          basketData: JSON.parse(localStorage.getItem("basketData")),
-        })
-      }
-    }
-  }
-
   initialSet(){
     axios.get('dummy/goods.json')
       .then((obj) => {
@@ -49,20 +34,6 @@ class HomeContainer extends Component {
     })
   }
 
-  checkBasket = (info) => {
-    const { id, selectedOption } = info;
-    const { basketData } = this.state;
-
-    if(!selectedOption) return alert("옵션을 선택해 주십시오.");
-
-    const checkTF = basketData.some((item) => (item.id === id && item.options.id === Number(selectedOption)));
-    if(checkTF){
-      alert("이미 장바구니에 담겨져 있습니다.");
-    }else{
-      this.addToBasket(info);
-    }
-  }
-
   addToBasket = (info) => {
     const { id, selectedOption } = info;
     const { shoppingData } = this.state;
@@ -80,8 +51,37 @@ class HomeContainer extends Component {
     alert("해당 상품을 장바구니에 추가하였습니다");
   }
 
+  checkBasket = (info) => {
+    const { id, selectedOption } = info;
+    const { basketData } = this.state;
+
+    if(!selectedOption) return alert("옵션을 선택해 주십시오.");
+
+    const checkTF = basketData.some((item) => (item.id === id && item.options.id === Number(selectedOption)));
+    if(checkTF){
+      alert("이미 장바구니에 담겨져 있습니다.");
+    }else{
+      this.addToBasket(info);
+    }
+  }
+
   componentDidUpdate(prevProps,prevState){
     localStorage.basketData = JSON.stringify(this.state.basketData);
+  }
+
+  componentDidMount(){
+    if(!localStorage.shoppingData){
+      this.initialSet();
+    }else{
+      this.setState({
+        shoppingData: JSON.parse(localStorage.getItem("shoppingData")),
+      })
+      if(localStorage.basketData){
+        this.setState({
+          basketData: JSON.parse(localStorage.getItem("basketData")),
+        })
+      }
+    }
   }
 
   render() {

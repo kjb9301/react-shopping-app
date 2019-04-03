@@ -12,9 +12,12 @@ class BasketPageContainer extends Component {
   addToOrder = (id,opId) => {
     const { basketList } = this.state;
     const newPayList = basketList.map(item => item = {...item, count:1})
-                                  .filter((item) => (item.id === id && item.options.id === opId));
+                                  .filter(item => {
+                                    return (item.id === id && item.options.id === opId)});
 
-    const newBasketList = basketList.filter((item) => (item.id !== id || (item.id === id && item.options.id !== opId)));
+    const newBasketList = basketList.filter(item => {
+                                      return (item.id !== id || (item.id === id && item.options.id !== opId))});
+    
     this.setState((prevState) => ({
       payList: prevState.payList.concat(newPayList),
       basketList: newBasketList
@@ -23,7 +26,9 @@ class BasketPageContainer extends Component {
 
   deleteInBasket = (id,opId) => {
     const { basketList } = this.state;
-    const newBasketList = basketList.filter((item) => (item.id !== id || (item.id === id && item.options.id !== opId)));
+    const newBasketList = basketList.filter(item => {
+                                      return (item.id !== id ||  (item.id === id && item.options.id !== opId))
+                                    });
     this.setState({
       basketList: newBasketList
     })
@@ -31,14 +36,25 @@ class BasketPageContainer extends Component {
 
   deleteInPayList = (id,opId) => {
     const { payList } = this.state;
-    const newPayList = payList.filter((item) => (item.id !== id || (item.id === id && item.options.id !== opId)));
-    this.setState({
-      payList: newPayList
-    })
+    const newPayList = payList.filter(item => {
+                                return (item.id !== id || (item.id === id && item.options.id !== opId))
+                              });
+    const newBasketList = payList.filter(item => {
+                                    return (item.id === id && item.options.id === opId)
+                                  })
+    this.setState((prevState) => ({
+      payList: newPayList,
+      basketList: prevState.basketList.concat(newBasketList)
+    }))
   }
 
   changeCount = (e) => {
-    const { name, value } = e.target;
+    const { name, value, max } = e.target;
+    if(Number(value) > max){
+      alert("더 이상 재고가 없습니다.");
+      return;
+    }
+    
     const id = Number(name.split("_")[0]);
     const opId = Number(name.split("_")[1]);
 
@@ -46,11 +62,6 @@ class BasketPageContainer extends Component {
     const index = payList.findIndex(item => item.id === id && item.options.id === opId);
     const newItem = {...payList[index]};
     newItem.count = Number(value);
-
-    if(Number(value) > newItem.options.stock){
-      alert("더 이상 재고가 없습니다.");
-      return;
-    }
 
     const newPayList = [
       ...payList.slice(0, index),
