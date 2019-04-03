@@ -70,7 +70,6 @@ class BasketPageContainer extends Component {
   }
 
   componentDidMount(){
-    console.log("componentDidmount")
     this.setState({
       basketList: JSON.parse(localStorage.getItem("basketData"))
     })
