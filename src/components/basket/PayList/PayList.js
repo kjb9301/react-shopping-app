@@ -35,7 +35,9 @@ const PayList = ({payList, changeCount, deleteInPayList}) => {
       </div>
       <div className="pay-footer">
         <div className="pay-total"><span>{totalPrice}원</span></div>
-        <div className="pay-btn"><button>주문하기</button></div>
+        <div className="pay-btn">
+          <button>주문하기</button>
+        </div>
       </div>
     </div>
   );

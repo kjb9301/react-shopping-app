@@ -3,6 +3,7 @@ import BasketContainer from 'containers/BasketPage/BasketContainer';
 import PayContainer from 'containers/BasketPage/PayContainer';
 
 class BasketPageContainer extends Component {
+
   state = {
     basketList: [],
     payList: []
@@ -62,7 +63,14 @@ class BasketPageContainer extends Component {
     })
   }
 
+  componentDidUpdate(prevProps,prevState){
+    if(this.state.basketList !== prevState.basketList){
+      localStorage.basketData = JSON.stringify(this.state.basketList);
+    }
+  }
+
   componentDidMount(){
+    console.log("componentDidmount")
     this.setState({
       basketList: JSON.parse(localStorage.getItem("basketData"))
     })

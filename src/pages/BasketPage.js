@@ -3,7 +3,6 @@ import Section from 'components/common/Section';
 import BasketPageContainer from 'containers/BasketPage/BasketPageContainer';
 
 const BasketPage = () => {
-  console.log("basket page")
   return (
     <Section>
       <BasketPageContainer/>

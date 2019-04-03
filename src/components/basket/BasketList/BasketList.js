@@ -3,7 +3,7 @@ import './BasketList.scss';
 import BasketItem from 'components/basket/BasketItem';
 
 const BasketList = ({basketList, addToOrder, deleteInBasket}) => {
-  const basketItems = basketList.map((basketItem) => {
+  const basketItems = (basketList||[]).map((basketItem) => {
     const id_Op = `${basketItem}_${basketItem.options.id}`;
     return (
       <BasketItem

@@ -12,6 +12,21 @@ class HomeContainer extends Component {
   }
 
   componentDidMount(){
+    if(!localStorage.shoppingData){
+      this.initialSet();
+    }else{
+      this.setState({
+        shoppingData: JSON.parse(localStorage.getItem("shoppingData")),
+      })
+      if(localStorage.basketData){
+        this.setState({
+          basketData: JSON.parse(localStorage.getItem("basketData")),
+        })
+      }
+    }
+  }
+
+  initialSet(){
     axios.get('dummy/goods.json')
       .then((obj) => {
         const goods = obj.data.goods.map((good) => good = {...good, img})
@@ -63,6 +78,10 @@ class HomeContainer extends Component {
       detailData: ''
     }))
     alert("해당 상품을 장바구니에 추가하였습니다");
+  }
+
+  componentDidUpdate(prevProps,prevState){
+    localStorage.basketData = JSON.stringify(this.state.basketData);
   }
 
   render() {

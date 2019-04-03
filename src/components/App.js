@@ -7,7 +7,6 @@ import { MainPage, BasketPage } from 'pages';
 class App extends Component {
 
   render() {
-    console.log("App")
     return (
       <div className="wrapper">
         <Header/>
